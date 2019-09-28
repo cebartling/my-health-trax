@@ -1,3 +1,15 @@
+# my-health-trax-consumer
+
+## Docker
+
+```bash
+docker build -t my-health-trax-consumer .
+
+docker run --name my-health-trax-consumer -d -p 8080:80 my-health-trax-consumer:latest
+```
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
