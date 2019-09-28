@@ -2,6 +2,7 @@ import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar";
 import UserProfile from "./components/UserProfile";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
     return (
@@ -13,7 +14,7 @@ function App() {
                 </header>
                 <Switch>
                     <Route path="/" exact />
-                    <Route path="/profile" component={UserProfile} />
+                    <PrivateRoute path="/profile" component={UserProfile} />
                 </Switch>
             </BrowserRouter>
         </div>
