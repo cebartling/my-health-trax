@@ -1,21 +1,21 @@
 import React from "react";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import NavBar from "./components/NavBar";
-import {useAuth0} from "./auth0Client";
+import UserProfile from "./components/UserProfile";
 
 function App() {
-    const {loading} = useAuth0();
-
-    if (loading) {
-        return (
-            <div>Loading...</div>
-        );
-    }
-
     return (
         <div className="App">
-            <header>
-                <NavBar/>
-            </header>
+            {/* New - use BrowserRouter to provide access to /profile */}
+            <BrowserRouter>
+                <header>
+                    <NavBar />
+                </header>
+                <Switch>
+                    <Route path="/" exact />
+                    <Route path="/profile" component={UserProfile} />
+                </Switch>
+            </BrowserRouter>
         </div>
     );
 }
