@@ -1,22 +1,17 @@
-// import createAuth0Client from "@auth0/auth0-spa-js";
-//
-// export const createAuth0 = async () => {
-//     const auth0 = await createAuth0Client();
-//
-//     return auth0;
-// };
-
 import React, {useState, useEffect, useContext} from "react";
 import createAuth0Client from "@auth0/auth0-spa-js";
 
 const DEFAULT_REDIRECT_CALLBACK = () => window.history.replaceState({}, document.title, window.location.pathname);
 
 export const Auth0Context = React.createContext();
-export const useAuth0 = () => useContext(Auth0Context);
+export const useAuth0 = () => {
+    useContext(Auth0Context);
+};
+
 export const Auth0Provider = ({children, onRedirectCallback = DEFAULT_REDIRECT_CALLBACK, ...initOptions}) => {
-    const [isAuthenticated, setIsAuthenticated] = useState();
-    const [user, setUser] = useState();
-    const [auth0Client, setAuth0] = useState();
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(undefined);
+    const [auth0Client, setAuth0] = useState(undefined);
     const [loading, setLoading] = useState(true);
     const [popupOpen, setPopupOpen] = useState(false);
 
