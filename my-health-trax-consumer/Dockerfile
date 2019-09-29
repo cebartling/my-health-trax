@@ -1,3 +1,3 @@
-FROM nginx:1.17.4-alpine
+FROM nginx:latest-alpine
 
 COPY build /usr/share/nginx/html
