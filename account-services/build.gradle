@@ -31,3 +31,33 @@ dependencies {
     liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.0'
     liquibaseRuntime 'org.postgresql:postgresql'
 }
+
+liquibase {
+    mainClassName 'org.liquibase.gradle.OutputEnablingLiquibaseRunner'
+//    activities {
+//        main {
+//            changeLogFile 'changelog.groovy'
+//            url 'jdbc:h2:db/liquibase_workshop;FILE_LOCK=NO'
+//            username 'sa'
+//            password ''
+//            // driver 'com.mysql.jdbc.Driver'
+//
+//            changeLogParameters([ myToken: myValue,
+//                                  second: 'secondValue'])
+//            // changeLogParameters([ myToken: 'myParamValue',
+//            // second: 'secondValue'])
+//        }
+//        second {
+//            changeLogFile 'second.groovy'
+//            url 'jdbc:h2:db/liquibase_workshop;FILE_LOCK=NO'
+//            username 'sa'
+//            password ''
+//            changeLogParameters([ myToken: 'myvalue',
+//                                  second: 'secondValue'])
+//        }
+//    }
+//
+//    // runList = project.ext.runList
+//    // runList = 'main'
+//    runList = 'main, second'
+}
