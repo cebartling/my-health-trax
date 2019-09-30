@@ -21,3 +21,11 @@ docker-compose down
 ```bash
 docker-compose down --volumes
 ```
+
+## Liquibase migrations
+
+### Apply migrations
+
+```bash
+gradle update
+```

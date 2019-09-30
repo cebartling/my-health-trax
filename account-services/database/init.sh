@@ -1,6 +1,6 @@
 #!/bin/bash
 psql -v ON_ERROR_STOP=1 --username "$POSTGRES_USER" -d "$POSTGRES_DB"  <<-EOSQL
-  CREATE SCHEMA IF NOT EXISTS $SCHEMA;
+  CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
   create role $ANON nologin;
 

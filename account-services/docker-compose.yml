@@ -5,15 +5,12 @@ services:
     restart: always
     volumes:
       - ./database/init.sh:/docker-entrypoint-initdb.d/0001-initialization.sh
-      - ./database/sql/init/schema.sql:/docker-entrypoint-initdb.d/0002-create-schema.sql
-      - ./database/sql/init/data-seeding.sql:/docker-entrypoint-initdb.d/0003-data-seeding.sql
       - db-data:/var/lib/postgresql/data
     ports:
       - 5432:5432
     environment:
       POSTGRES_USER: accounts
       POSTGRES_PASSWORD: accounts
-      SCHEMA: accounts
       ANON: web_anon
       AUTHENTICATOR: authenticator
 

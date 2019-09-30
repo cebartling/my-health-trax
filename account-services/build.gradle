@@ -27,37 +27,23 @@ dependencies {
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    liquibaseRuntime 'org.liquibase:liquibase-core:3.8.0'
+    liquibaseRuntime 'org.liquibase:liquibase-gradle-plugin:2.0.1'
+    liquibaseRuntime 'org.liquibase:liquibase-core:3.6.3'
     liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.1.0'
+    liquibaseRuntime 'ch.qos.logback:logback-classic:1.2.3'
     liquibaseRuntime 'org.postgresql:postgresql'
 }
 
 liquibase {
     mainClassName 'org.liquibase.gradle.OutputEnablingLiquibaseRunner'
-//    activities {
-//        main {
-//            changeLogFile 'changelog.groovy'
-//            url 'jdbc:h2:db/liquibase_workshop;FILE_LOCK=NO'
-//            username 'sa'
-//            password ''
-//            // driver 'com.mysql.jdbc.Driver'
-//
-//            changeLogParameters([ myToken: myValue,
-//                                  second: 'secondValue'])
-//            // changeLogParameters([ myToken: 'myParamValue',
-//            // second: 'secondValue'])
-//        }
-//        second {
-//            changeLogFile 'second.groovy'
-//            url 'jdbc:h2:db/liquibase_workshop;FILE_LOCK=NO'
-//            username 'sa'
-//            password ''
-//            changeLogParameters([ myToken: 'myvalue',
-//                                  second: 'secondValue'])
-//        }
-//    }
-//
-//    // runList = project.ext.runList
-//    // runList = 'main'
-//    runList = 'main, second'
+    activities {
+        main {
+            changeLogFile 'src/main/db/main.groovy'
+            url 'jdbc:postgresql://localhost:5432/accounts'
+            username 'accounts'
+            password 'accounts'
+            driver 'org.postgresql.Driver'
+        }
+    }
+    runList = 'main'
 }
