@@ -1,19 +1,17 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      |
-      <router-link to="/about">About</router-link>
-      <span v-if="$auth.isAuthenticated">
-        |
-        <router-link to="/userProfile">
-          User profile
-        </router-link>
-      </span>
-    </div>
+    <NavigationHeader />
     <router-view />
   </div>
 </template>
+
+<script>
+import NavigationHeader from "@/components/NavigationHeader";
+
+export default {
+  components: { NavigationHeader }
+};
+</script>
 
 <style lang="scss">
 #app {
