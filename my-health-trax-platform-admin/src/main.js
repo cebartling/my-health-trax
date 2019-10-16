@@ -3,6 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import { Auth0Plugin } from "./auth";
+import "./main.css";
 
 Vue.config.productionTip = false;
 
