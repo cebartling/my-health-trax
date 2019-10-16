@@ -28,9 +28,19 @@ export default {
   a {
     font-weight: bold;
     color: #2c3e50;
+    cursor: pointer;
+    text-decoration: underline;
+
+    &:hover {
+      background-color: bisque;
+    }
 
     &.router-link-exact-active {
       color: #42b983;
+
+      &:hover {
+        background-color: transparent;
+      }
     }
   }
 }

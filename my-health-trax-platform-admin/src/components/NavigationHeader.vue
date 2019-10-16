@@ -12,9 +12,9 @@
     |
     <span v-if="!$auth.loading">
       <!-- show login when not authenticated -->
-      <button v-if="!$auth.isAuthenticated" @click="login">Sign in</button>
+      <a v-if="!$auth.isAuthenticated" @click="login">Sign in</a>
       <!-- show logout when authenticated -->
-      <button v-if="$auth.isAuthenticated" @click="logout">Sign out</button>
+      <a v-if="$auth.isAuthenticated" @click="logout">Sign out</a>
     </span>
   </div>
 </template>
