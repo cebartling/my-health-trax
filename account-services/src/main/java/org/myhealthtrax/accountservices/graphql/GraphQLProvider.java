@@ -8,8 +8,6 @@ import graphql.schema.idl.RuntimeWiring;
 import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
-import org.myhealthtrax.accountservices.graphql.datafetchers.GraphQLDataFetchers;
-import org.myhealthtrax.accountservices.graphql.datafetchers.UserAccountDataFetchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -18,20 +16,15 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.net.URL;
 
-import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
-
 @Component
 public class GraphQLProvider {
 
-    private final UserAccountDataFetchers userAccountDataFetchers;
-    private final GraphQLDataFetchers graphQLDataFetchers;
-
+    private final RuntimeWiring.Builder runtimeWiringBuilder;
     private GraphQL graphQL;
 
     @Autowired
-    public GraphQLProvider(GraphQLDataFetchers graphQLDataFetchers, UserAccountDataFetchers userAccountDataFetchers) {
-        this.graphQLDataFetchers = graphQLDataFetchers;
-        this.userAccountDataFetchers = userAccountDataFetchers;
+    public GraphQLProvider(RuntimeWiring.Builder runtimeWiringBuilder) {
+        this.runtimeWiringBuilder = runtimeWiringBuilder;
     }
 
     @Bean
@@ -47,22 +40,10 @@ public class GraphQLProvider {
         this.graphQL = GraphQL.newGraphQL(graphQLSchema).build();
     }
 
-
     private GraphQLSchema buildSchema(String sdl) {
         TypeDefinitionRegistry typeRegistry = new SchemaParser().parse(sdl);
-        RuntimeWiring runtimeWiring = buildWiring();
+        RuntimeWiring runtimeWiring = runtimeWiringBuilder.build();
         SchemaGenerator schemaGenerator = new SchemaGenerator();
         return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
-    }
-
-    private RuntimeWiring buildWiring() {
-        return RuntimeWiring.newRuntimeWiring()
-                .type(newTypeWiring("Query")
-                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher())
-                        .dataFetcher("userAccountByEmail",
-                                userAccountDataFetchers.getUserAccountByEmailDataFetcher()))
-                .type(newTypeWiring("Book")
-                        .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher()))
-                .build();
     }
 }

@@ -1,19 +1,5 @@
 type Query {
-  bookById(id: ID): Book
   userAccountByEmail(email: String!): UserAccount
-}
-
-type Book {
-  id: ID
-  name: String
-  pageCount: Int
-  author: Author
-}
-
-type Author {
-  id: ID
-  firstName: String
-  lastName: String
 }
 
 type UserAccount {
