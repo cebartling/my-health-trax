@@ -3,6 +3,7 @@
 ## Local development
 
 1. Install Java 11 through SDKMAN: `sdk install java 11.0.5.hs-adpt`
+1. Install Lombok plugin and enable annotation processors in IntelliJ IDEA.
 1. Use Java 11 through SDKMAN: `sdk use java 11.0.5.hs-adpt`
 
 
