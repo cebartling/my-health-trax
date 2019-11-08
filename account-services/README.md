@@ -1,5 +1,11 @@
 # Accounts Service
 
+## Local development
+
+1. Install Java 11 through SDKMAN: `sdk install java 11.0.5.hs-adpt`
+1. Use Java 11 through SDKMAN: `sdk use java 11.0.5.hs-adpt`
+
+
 ## Docker Compose usage
 
 PostgreSQL 11 is used for the database.
