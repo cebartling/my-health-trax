@@ -1,4 +1,4 @@
-package org.myhealthtrax.accountservices.graphql;
+package org.myhealthtrax.accountservices.graphql.datafetchers;
 
 import com.google.common.collect.ImmutableMap;
 import graphql.schema.DataFetcher;
