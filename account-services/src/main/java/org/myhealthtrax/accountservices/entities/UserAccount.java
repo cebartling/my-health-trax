@@ -23,10 +23,13 @@ public class UserAccount {
 
     @NotNull
     private String givenName;
+
     @NotNull
     private String familyName;
+
     @NotNull
     private String locale;
+
     @NotNull
     private String email;
 }

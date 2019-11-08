@@ -9,6 +9,7 @@ import graphql.schema.idl.SchemaGenerator;
 import graphql.schema.idl.SchemaParser;
 import graphql.schema.idl.TypeDefinitionRegistry;
 import org.myhealthtrax.accountservices.graphql.datafetchers.GraphQLDataFetchers;
+import org.myhealthtrax.accountservices.graphql.datafetchers.UserAccountDataFetchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -22,13 +23,15 @@ import static graphql.schema.idl.TypeRuntimeWiring.newTypeWiring;
 @Component
 public class GraphQLProvider {
 
+    private final UserAccountDataFetchers userAccountDataFetchers;
+    private final GraphQLDataFetchers graphQLDataFetchers;
+
     private GraphQL graphQL;
 
-    private GraphQLDataFetchers graphQLDataFetchers;
-
     @Autowired
-    public GraphQLProvider(GraphQLDataFetchers graphQLDataFetchers) {
+    public GraphQLProvider(GraphQLDataFetchers graphQLDataFetchers, UserAccountDataFetchers userAccountDataFetchers) {
         this.graphQLDataFetchers = graphQLDataFetchers;
+        this.userAccountDataFetchers = userAccountDataFetchers;
     }
 
     @Bean
@@ -55,7 +58,9 @@ public class GraphQLProvider {
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
+                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher())
+                        .dataFetcher("userAccountByEmail",
+                                userAccountDataFetchers.getUserAccountByEmailDataFetcher()))
                 .type(newTypeWiring("Book")
                         .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher()))
                 .build();
