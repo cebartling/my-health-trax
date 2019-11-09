@@ -23,7 +23,14 @@ public class GraphQLRuntimeConfiguration {
     public RuntimeWiring.Builder runtimeWiringBuilder() {
         final var builder = RuntimeWiring.newRuntimeWiring();
         builder.type(buildQueryTypeWiring());
+        builder.type(buildMutationTypeWiring());
 //        builder.type(buildUserAccountTypeWiring());
+        return builder;
+    }
+
+    private TypeRuntimeWiring.Builder buildMutationTypeWiring() {
+        final var builder = newTypeWiring("Mutation");
+        builder.dataFetcher("createUserAccount", userAccountDataFetchers.getCreateUserAccountDataFetcher());
         return builder;
     }
 
