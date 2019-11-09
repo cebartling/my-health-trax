@@ -7,10 +7,29 @@
 1. Install [Lombok plugin](https://plugins.jetbrains.com/plugin/6317-lombok) and [enable annotation processors in IntelliJ IDEA](https://www.jetbrains.com/help/idea/compiler-annotation-processors.html).
 1. Use Java 11 through SDKMAN: `sdk use java 11.0.5.hs-adpt`
 
+### Running the Spring Boot app locally, outside of Docker Compose
+
+1. Set the following environment variable: `JDBC_URL=jdbc:postgresql://localhost:5432/accounts`
+1. Run the Spring Boot app after starting the PostgreSQL server through `docker-compose`.
+
+### Obtaining Bearer tokens from Auth0 for GraphQL testing
+
+```bash
+curl --request POST --url https://XXX.auth0.com/oauth/token --header 'content-type: application/json' --data '{"client_id":"ZZZ","client_secret":"YYY","audience":"https://XXX.auth0.com/api/v2/","grant_type":"client_credentials"}'
+```
+
+- Replace XXX with your own Auth0 *domain*.
+- Replace YYY with your own Auth0 *client_secret*.
+- Replace ZZZ with your own Auth0 *client_id*.
 
 ## Docker Compose usage
 
 - PostgreSQL 11 is used for the relational database.
+
+## Build Docker image for account services
+
+`./gradlew build docker`
+
 
 ### Startup
 

@@ -1,13 +1,22 @@
 plugins {
+    id 'java'
+    id 'eclipse'
+    id 'idea'
     id 'org.springframework.boot' version '2.2.0.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'java'
     id "org.liquibase.gradle" version "2.0.1"
+    id "com.palantir.docker" version "0.22.1"
 }
 
 group = 'org.myhealthtrax'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
+targetCompatibility = '11'
+
+
+springBoot {
+    mainClassName = 'org.myhealthtrax.accountservices.MainApplication'
+}
 
 configurations {
     developmentOnly
@@ -28,6 +37,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+//    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.security:spring-security-oauth2-resource-server'
     implementation 'org.springframework.security:spring-security-oauth2-jose'
@@ -65,7 +75,7 @@ test {
 
     // listen to events in the test execution lifecycle
     beforeTest { descriptor ->
-        logger.lifecycle("==> Running test: ${descriptor}")
+        logger.lifecycle("  ==> Running test: ${descriptor}")
     }
 
     // Fail the 'test' task on the first test failure
@@ -73,6 +83,21 @@ test {
 
     // listen to standard out and standard error of the test JVM(s)
     onOutput { descriptor, event ->
-        logger.lifecycle("==> Test: ${descriptor} produced standard out/err: ${event.message}")
+        logger.lifecycle("  ==> Test: ${descriptor} produced standard out/err: ${event.message}")
     }
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project.group}/accountservices"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
+    dockerfile file('Dockerfile')
+    pull true
+    noCache true
 }
