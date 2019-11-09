@@ -39,13 +39,18 @@ public class UserAccountDataFetchers {
             final var arguments = environment.getArguments();
             final var inputMap = (Map<String, Object>) arguments.get("userAccountInput");
             final var userAccountInput = UserAccountInput.fromMap(inputMap);
-            final var unpersisted = new UserAccount();
-            unpersisted.setEmail(userAccountInput.getEmail());
-            unpersisted.setFamilyName(userAccountInput.getFamilyName());
-            unpersisted.setGivenName(userAccountInput.getGivenName());
-            unpersisted.setLocale(userAccountInput.getLocale());
-            final var persisted = this.userAccountRepository.save(unpersisted);
-            return persisted;
+
+            final var userAccountsByEmail = userAccountRepository.findByEmail(userAccountInput.getEmail());
+            if (userAccountsByEmail.size() == 0) {
+                final var unpersisted = new UserAccount();
+                unpersisted.setEmail(userAccountInput.getEmail());
+                unpersisted.setFamilyName(userAccountInput.getFamilyName());
+                unpersisted.setGivenName(userAccountInput.getGivenName());
+                unpersisted.setLocale(userAccountInput.getLocale());
+                return this.userAccountRepository.save(unpersisted);
+            } else {
+                return userAccountsByEmail.get(0);
+            }
         };
     }
 }
