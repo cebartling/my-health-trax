@@ -14,6 +14,8 @@
 
 ### Obtaining Bearer tokens from Auth0 for GraphQL testing
 
+In order to test the GraphQL API, you need to pass a Bearer token in the `Authorization` header of your favorite HTTP client. Below is the cURL command that you can use to get a new Bearer token from your Auth0 account.
+
 ```bash
 curl --request POST --url https://XXX.auth0.com/oauth/token --header 'content-type: application/json' --data '{"client_id":"ZZZ","client_secret":"YYY","audience":"https://XXX.auth0.com/api/v2/","grant_type":"client_credentials"}'
 ```
