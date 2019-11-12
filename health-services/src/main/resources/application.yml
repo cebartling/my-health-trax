@@ -1,0 +1,163 @@
+auth0:
+  audience: https://cebartling.auth0.com/api/v2/
+
+spring:
+  application:
+    name: Health Services
+  datasource:
+    url: ${JDBC_URL}
+    username: healthsvcs
+    password: healthsvcs
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    show-sql: true
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://cebartling.auth0.com/
+
+# ===================================================================
+# COMMON SPRING BOOT PROPERTIES
+#
+# This sample file is provided as a guideline. Do NOT copy it in its
+# entirety to your own application.               ^^^
+# ===================================================================
+# ----------------------------------------
+# CORE PROPERTIES
+# ----------------------------------------
+#debug=false # Enable debug logs.
+#trace=false # Enable trace logs.
+# LOGGING
+#logging.config= # Location of the logging configuration file. For instance, `classpath:logback.xml` for Logback.
+#logging.exception-conversion-word=%wEx # Conversion word used when logging exceptions.
+#logging.file= # Log file name (for instance, `myapp.log`). Names can be an exact location or relative to the current directory.
+#logging.file.max-history=0 # Maximum of archive log files to keep. Only supported with the default logback setup.
+#logging.file.max-size=10MB # Maximum log file size. Only supported with the default logback setup.
+#logging.group.*= # Log groups to quickly change multiple loggers at the same time. For instance, `logging.level.db=org.hibernate,org.springframework.jdbc`.
+#logging.level.*= # Log levels severity mapping. For instance, `logging.level.org.springframework=DEBUG`.
+#logging.path= # Location of the log file. For instance, `/var/log`.
+#logging.pattern.console= # Appender pattern for output to the console. Supported only with the default Logback setup.
+#logging.pattern.dateformat=yyyy-MM-dd HH:mm:ss.SSS # Appender pattern for log date format. Supported only with the default Logback setup.
+#logging.pattern.file= # Appender pattern for output to a file. Supported only with the default Logback setup.
+#logging.pattern.level=%5p # Appender pattern for log level. Supported only with the default Logback setup.
+#logging.register-shutdown-hook=false # Register a shutdown hook for the logging system when it is initialized.
+
+
+# AOP
+# Add @EnableAspectJAutoProxy.
+#spring.aop.auto=true
+#spring.aop.proxy-target-class=true      # Whether subclass-based (CGLIB) proxies are to be created (true), as opposed to standard Java interface-based proxies (false).
+
+# IDENTITY (ContextIdApplicationContextInitializer)
+#spring.application.name=Account Services
+
+
+# ADMIN (SpringApplicationAdminJmxAutoConfiguration)
+#spring.application.admin.enabled=false # Whether to enable admin features for the application.
+#spring.application.admin.jmx-name=org.springframework.boot:type=Admin,name=SpringApplication # JMX name of the application admin MBean.
+
+# AUTO-CONFIGURATION
+#spring.autoconfigure.exclude= # Auto-configuration classes to exclude.
+
+# BANNER
+#spring.banner.charset=UTF-8 # Banner file encoding.
+#spring.banner.location=classpath:banner.txt # Banner text resource location.
+#spring.banner.image.location=classpath:banner.gif # Banner image file location (jpg or png can also be used).
+#spring.banner.image.width=76 # Width of the banner image in chars.
+#spring.banner.image.height=# Height of the banner image in chars (default based on image height).
+#spring.banner.image.margin=2 # Left hand image margin in chars.
+#spring.banner.image.invert=false # Whether images should be inverted for dark terminal themes.
+
+# SPRING CORE
+#spring.beaninfo.ignore=true # Whether to skip search of BeanInfo classes.
+
+# LIQUIBASE (LiquibaseProperties)
+#spring.liquibase.change-log=classpath:/db/changelog/db.changelog-master.yaml # Change log configuration path.
+#spring.liquibase.contexts= # Comma-separated list of runtime contexts to use.
+#spring.liquibase.database-change-log-lock-table=DATABASECHANGELOGLOCK # Name of table to use for tracking concurrent Liquibase usage.
+#spring.liquibase.database-change-log-table=DATABASECHANGELOG # Name of table to use for tracking change history.
+#spring.liquibase.default-schema= # Default database schema.
+#spring.liquibase.drop-first=false # Whether to first drop the database schema.
+#spring.liquibase.enabled=true # Whether to enable Liquibase support.
+#spring.liquibase.labels= # Comma-separated list of runtime labels to use.
+#spring.liquibase.liquibase-schema= # Schema to use for Liquibase objects.
+#spring.liquibase.liquibase-tablespace= # Tablespace to use for Liquibase objects.
+#spring.liquibase.parameters.*= # Change log parameters.
+#spring.liquibase.password= # Login password of the database to migrate.
+#spring.liquibase.rollback-file= # File to which rollback SQL is written when an update is performed.
+#spring.liquibase.test-rollback-on-update=false # Whether rollback should be tested before update is performed.
+#spring.liquibase.url= # JDBC URL of the database to migrate. If not set, the primary configured data source is used.
+#spring.liquibase.user= # Login user of the database to migrate.
+# DATASOURCE (DataSourceAutoConfiguration & DataSourceProperties)
+#spring.datasource.continue-on-error=false # Whether to stop if an error occurs while initializing the database.
+#spring.datasource.data= # Data (DML) script resource references.
+#spring.datasource.data-username= # Username of the database to execute DML scripts (if different).
+#spring.datasource.data-password= # Password of the database to execute DML scripts (if different).
+#spring.datasource.dbcp2.*= # Commons DBCP2 specific settings
+#spring.datasource.generate-unique-name=false # Whether to generate a random datasource name.
+#spring.datasource.hikari.*= # Hikari specific settings
+#spring.datasource.initialization-mode=embedded # Initialize the datasource with available DDL and DML scripts.
+#spring.datasource.jmx-enabled=false # Whether to enable JMX support (if provided by the underlying pool).
+#spring.datasource.jndi-name= # JNDI location of the datasource. Class, url, username & password are ignored when set.
+#spring.datasource.name= # Name of the datasource. Default to "testdb" when using an embedded database.
+#spring.datasource.platform=all # Platform to use in the DDL or DML scripts (such as schema-${platform}.sql or data-${platform}.sql).
+#spring.datasource.schema= # Schema (DDL) script resource references.
+#spring.datasource.schema-username= # Username of the database to execute DDL scripts (if different).
+#spring.datasource.schema-password= # Password of the database to execute DDL scripts (if different).
+#spring.datasource.separator=; # Statement separator in SQL initialization scripts.
+#spring.datasource.sql-script-encoding= # SQL scripts encoding.
+#spring.datasource.tomcat.*= # Tomcat datasource specific settings
+#spring.datasource.type= # Fully qualified name of the connection pool implementation to use. By default, it is auto-detected from the classpath.
+#spring.datasource.xa.data-source-class-name= # XA datasource fully qualified name.
+#spring.datasource.xa.properties= # Properties to pass to the XA data source.
+#spring.datasource.url=jdbc:postgresql://localhost:5432/accounts
+#spring.datasource.username=accounts
+#spring.datasource.password=accounts
+#spring.datasource.driver-class-name=org.postgresql.Driver
+# JPA (JpaBaseConfiguration, HibernateJpaAutoConfiguration)
+#spring.data.jpa.repositories.bootstrap-mode=default
+#spring.data.jpa.repositories.enabled=true
+#spring.jpa.database= # Target database to operate on, auto-detected by default. Can be alternatively set using the "databasePlatform" property.
+#spring.jpa.database-platform= # Name of the target database to operate on, auto-detected by default. Can be alternatively set using the "Database" enum.
+#spring.jpa.generate-ddl=false # Whether to initialize the schema on startup.
+#spring.jpa.hibernate.ddl-auto= # DDL mode. This is actually a shortcut for the "hibernate.hbm2ddl.auto" property. Defaults to "create-drop" when using an embedded database and no schema manager was detected. Otherwise, defaults to "none".
+#spring.jpa.hibernate.naming.implicit-strategy= # Fully qualified name of the implicit naming strategy.
+#spring.jpa.hibernate.naming.physical-strategy= # Fully qualified name of the physical naming strategy.
+#spring.jpa.hibernate.use-new-id-generator-mappings= # Whether to use Hibernate's newer IdentifierGenerator for AUTO, TABLE and SEQUENCE.
+#spring.jpa.mapping-resources= # Mapping resources (equivalent to "mapping-file" entries in persistence.xml).
+#spring.jpa.open-in-view=true # Register OpenEntityManagerInViewInterceptor. Binds a JPA EntityManager to the thread for the entire processing of the request.
+#spring.jpa.properties.*= # Additional native properties to set on the JPA provider.
+#spring.jpa.show-sql=true
+# ----------------------------------------
+# DEVTOOLS PROPERTIES
+# ----------------------------------------
+# DEVTOOLS (DevToolsProperties)
+#spring.devtools.add-properties=true # Whether to enable development property defaults.
+#spring.devtools.livereload.enabled=true # Whether to enable a livereload.com-compatible server.
+#spring.devtools.livereload.port=35729 # Server port.
+#spring.devtools.restart.additional-exclude= # Additional patterns that should be excluded from triggering a full restart.
+#spring.devtools.restart.additional-paths= # Additional paths to watch for changes.
+#spring.devtools.restart.enabled=true # Whether to enable automatic restart.
+#spring.devtools.restart.exclude=META-INF/maven/**,META-INF/resources/**,resources/**,static/**,public/**,templates/**,**/*Test.class,**/*Tests.class,git.properties,META-INF/build-info.properties # Patterns that should be excluded from triggering a full restart.
+#spring.devtools.restart.log-condition-evaluation-delta=true # Whether to log the condition evaluation delta upon restart.
+#spring.devtools.restart.poll-interval=1s # Amount of time to wait between polling for classpath changes.
+#spring.devtools.restart.quiet-period=400ms # Amount of quiet time required without any classpath changes before a restart is triggered.
+#spring.devtools.restart.trigger-file= # Name of a specific file that, when changed, triggers the restart check. If not specified, any classpath file change triggers the restart.
+# REMOTE DEVTOOLS (RemoteDevToolsProperties)
+#spring.devtools.remote.context-path=/.~~spring-boot!~ # Context path used to handle the remote connection.
+#spring.devtools.remote.proxy.host= # The host of the proxy to use to connect to the remote application.
+#spring.devtools.remote.proxy.port= # The port of the proxy to use to connect to the remote application.
+#spring.devtools.remote.restart.enabled=true # Whether to enable remote restart.
+#spring.devtools.remote.secret= # A shared secret required to establish a connection (required to enable remote support).
+#spring.devtools.remote.secret-header-name=X-AUTH-TOKEN # HTTP header used to transfer the shared secret.
+# ----------------------------------------
+# TESTING PROPERTIES
+# ----------------------------------------
+#spring.test.database.replace=any # Type of existing DataSource to replace.
+#spring.test.mockmvc.print=default # MVC Print option.

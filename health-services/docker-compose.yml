@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-  account-services-db:
+  health-services-db:
     image: postgres
     restart: always
     volumes:
@@ -9,8 +9,8 @@ services:
     ports:
       - 5432:5432
     environment:
-      POSTGRES_USER: accounts
-      POSTGRES_PASSWORD: accounts
+      POSTGRES_USER: healthsvcs
+      POSTGRES_PASSWORD: healthsvcs
       ANON: web_anon
       AUTHENTICATOR: authenticator
 

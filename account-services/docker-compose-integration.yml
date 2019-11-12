@@ -13,7 +13,15 @@ services:
       POSTGRES_PASSWORD: accounts
       ANON: web_anon
       AUTHENTICATOR: authenticator
-
+  account-services:
+    depends_on:
+      - account-services-db
+    image: org.myhealthtrax/accountservices
+    restart: always
+    ports:
+      - 8080:8080
+    environment:
+      JDBC_URL: jdbc:postgresql://account-services-db:5432/accounts
 
 volumes:
   db-data:
