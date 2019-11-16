@@ -1,4 +1,5 @@
-scalar Timestamp
+scalar DateTime
+scalar PositiveInt
 
 type Query {
 #  userAccountByEmail(email: String!): UserAccount
@@ -21,8 +22,8 @@ type HeartRateDevice {
 
 type HeartRateMeasurement {
   id: ID!
-  timestamp: Timestamp!
-  value: Int!
+  timestamp: DateTime!
+  value: PositiveInt!
 }
 
 #input UserAccountInput {
