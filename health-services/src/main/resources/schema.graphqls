@@ -2,15 +2,17 @@ scalar DateTime
 scalar PositiveInt
 
 type Query {
-#  userAccountByEmail(email: String!): UserAccount
+  userById(id: ID!): User
 }
 
 type Mutation {
-#  createUserAccount(userAccountInput: UserAccountInput!): UserAccount
+  createUser(userInput: UserInput!): User
 }
 
-type UserAccount {
+type User {
   id: ID!
+  givenName: String!
+  familyName: String!
   heartRateDevices: [HeartRateDevice!]!
 }
 
@@ -26,9 +28,9 @@ type HeartRateMeasurement {
   value: PositiveInt!
 }
 
-#input UserAccountInput {
-#  givenName: String!
-#  familyName: String!
+input UserInput {
+  givenName: String!
+  familyName: String!
 #  locale: String!
 #  email: String!
-#}
+}

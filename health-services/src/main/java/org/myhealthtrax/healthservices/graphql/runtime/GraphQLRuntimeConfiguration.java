@@ -27,27 +27,27 @@ public class GraphQLRuntimeConfiguration {
         builder.scalar(ExtendedScalars.PositiveInt);
         builder.type(buildQueryTypeWiring());
         builder.type(buildMutationTypeWiring());
-//        builder.type(buildUserTypeWiring());
+        builder.type(buildUserTypeWiring());
         return builder;
     }
 
     private TypeRuntimeWiring.Builder buildMutationTypeWiring() {
         final var builder = newTypeWiring("Mutation");
-//        builder.dataFetcher("createUser", userDataFetchers.getCreateUserDataFetcher());
+        builder.dataFetcher("createUser", userDataFetchers.getCreateUserDataFetcher());
         return builder;
     }
 
     private TypeRuntimeWiring.Builder buildQueryTypeWiring() {
         final var builder = newTypeWiring("Query");
-//        builder.dataFetcher("userByEmail", userDataFetchers.getUserByEmailDataFetcher());
+        builder.dataFetcher("userById", userDataFetchers.getUserByIdDataFetcher());
         return builder;
     }
 
-//    private TypeRuntimeWiring.Builder buildUserTypeWiring() {
-//        final var typeWiring = newTypeWiring("User");
+    private TypeRuntimeWiring.Builder buildUserTypeWiring() {
+        final var typeWiring = newTypeWiring("User");
 //        typeWiring.dataFetcher("permissions", userDataFetchers.getPermissionsDataFetcher());
 //        newTypeWiring("Book")
 //                        .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher())
-//        return typeWiring;
-//    }
+        return typeWiring;
+    }
 }
