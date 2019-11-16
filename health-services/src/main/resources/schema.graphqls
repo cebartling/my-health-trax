@@ -1,22 +1,33 @@
+scalar Timestamp
+
 type Query {
-  userAccountByEmail(email: String!): UserAccount
+#  userAccountByEmail(email: String!): UserAccount
 }
 
 type Mutation {
-  createUserAccount(userAccountInput: UserAccountInput!): UserAccount
+#  createUserAccount(userAccountInput: UserAccountInput!): UserAccount
 }
 
 type UserAccount {
   id: ID!
-  givenName: String!
-  familyName: String!
-  locale: String!
-  email: String!
+  heartRateDevices: [HeartRateDevice!]!
 }
 
-input UserAccountInput {
-  givenName: String!
-  familyName: String!
-  locale: String!
-  email: String!
+type HeartRateDevice {
+  id: ID!
+  name: String!
+  heartRateMeasurements: [HeartRateMeasurement!]!
 }
+
+type HeartRateMeasurement {
+  id: ID!
+  timestamp: Timestamp!
+  value: Int!
+}
+
+#input UserAccountInput {
+#  givenName: String!
+#  familyName: String!
+#  locale: String!
+#  email: String!
+#}

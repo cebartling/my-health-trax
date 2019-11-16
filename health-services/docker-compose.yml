@@ -7,7 +7,7 @@ services:
       - ./database/init.sh:/docker-entrypoint-initdb.d/0001-initialization.sh
       - db-data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - 5433:5432
     environment:
       POSTGRES_USER: healthsvcs
       POSTGRES_PASSWORD: healthsvcs
