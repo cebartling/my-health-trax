@@ -1,0 +1,58 @@
+databaseChangeLog:
+  - changeSet:
+    id: 20191115201545
+    author: cebartling
+    changes:
+      - createTable:
+          tableName: heart_rate_measurements
+          columns:
+            - column:
+                name: id
+                type: uuid
+                defaultValue: uuid_generate_v4()
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: user_device_id
+                type: uuid
+                constraints:
+                  nullable: false
+            - column:
+                name: value
+                type: int
+                constraints:
+                  nullable: false
+            - column:
+                name: measured_at
+                type: timestamp
+                constraints:
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp
+                defaultValueDate: now()
+                constraints:
+                  nullable: false
+            - column:
+                name: updated_at
+                type: timestamp
+                defaultValueDate: now()
+                constraints:
+                  nullable: false
+      - addForeignKeyConstraint:
+          baseColumnNames: user_device_id
+          baseTableName: heart_rate_measurements
+          baseTableSchemaName: public
+          constraintName: fk_heart_rate_measurements_user_device_id
+          deferrable: true
+          initiallyDeferred: true
+          onDelete: NO ACTION
+          onUpdate: NO ACTION
+          referencedColumnNames: id
+          referencedTableName: user_devices
+          referencedTableSchemaName: public
+          validate: true
+    rollback:
+      - dropTable:
+          tableName: heart_rate_measurements

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+    id: 20191115193951
+    author: cebartling
+    changes:
+      - createTable:
+          tableName: users
+          columns:
+            - column:
+                name: id
+                type: uuid
+                defaultValue: uuid_generate_v4()
+                constraints:
+                  primaryKey: true
+                  nullable: false
+            - column:
+                name: created_at
+                type: timestamp
+                defaultValueDate: now()
+                constraints:
+                  nullable: false
+            - column:
+                name: updated_at
+                type: timestamp
+                defaultValueDate: now()
+                constraints:
+                  nullable: false
+    rollback:
+      - dropTable:
+          tableName: users
