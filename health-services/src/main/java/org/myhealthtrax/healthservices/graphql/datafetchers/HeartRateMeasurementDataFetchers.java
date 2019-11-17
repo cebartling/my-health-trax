@@ -1,20 +1,18 @@
 package org.myhealthtrax.healthservices.graphql.datafetchers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.myhealthtrax.healthservices.repositories.HeartRateMeasurementRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class HeartRateMeasurementDataFetchers {
 
-    private final HeartRateMeasurementRepository heartRateMeasurementRepository;
-
-    @Autowired
-    public HeartRateMeasurementDataFetchers(HeartRateMeasurementRepository heartRateMeasurementRepository) {
-        this.heartRateMeasurementRepository = heartRateMeasurementRepository;
-    }
+//    private final HeartRateMeasurementRepository heartRateMeasurementRepository;
+//
+//    @Autowired
+//    public HeartRateMeasurementDataFetchers(HeartRateMeasurementRepository heartRateMeasurementRepository) {
+//        this.heartRateMeasurementRepository = heartRateMeasurementRepository;
+//    }
 
 //    public DataFetcher getHeartRateMeasurementByEmailDataFetcher() {
 //        return environment -> {

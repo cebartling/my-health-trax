@@ -1,21 +1,18 @@
 package org.myhealthtrax.healthservices.graphql.datafetchers;
 
 import lombok.extern.slf4j.Slf4j;
-import org.myhealthtrax.healthservices.repositories.UserDeviceRepository;
-import org.myhealthtrax.healthservices.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 @Slf4j
 public class UserDeviceDataFetchers {
 
-    private final UserDeviceRepository userDeviceRepository;
-
-    @Autowired
-    public UserDeviceDataFetchers(UserDeviceRepository userDeviceRepository) {
-        this.userDeviceRepository = userDeviceRepository;
-    }
+//    private final UserDeviceRepository userDeviceRepository;
+//
+//    @Autowired
+//    public UserDeviceDataFetchers(UserDeviceRepository userDeviceRepository) {
+//        this.userDeviceRepository = userDeviceRepository;
+//    }
 
 //    public DataFetcher getUserByEmailDataFetcher() {
 //        return environment -> {
